@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="EmployeeManagementSystem.Views.AddOrEditEmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmployeeManagementSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600" Background="Aqua">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Text="{Binding PageTitle}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Margin="5,5,10,0">
+                <Label Content="First Name" FontSize="15" />
+                <Label Content="Last Name" FontSize="15" />
+                <Label Content="Position" FontSize="15" />
+            </StackPanel>
+
+            <StackPanel Margin="5,5,10,0">
+                <TextBox Text="{Binding FirstName}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding LastName}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding Position}" FontSize="15" MinWidth="80" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <StackPanel Margin="5,5,10,0">
+                <Label Content="City" FontSize="15" />
+                <Label Content="Zip Code" FontSize="15" />
+                <Label Content="Street" FontSize="15" />
+            </StackPanel>
+
+            <StackPanel Margin="5,5,10,0">
+                <TextBox Text="{Binding City}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding ZipCode}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding Street}" FontSize="15" MinWidth="80" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <ListView ItemsSource="{Binding PhoneNumbers}" BorderThickness="2" BorderBrush="Black" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Phone Number" Width="AUTO" DisplayMemberBinding="{Binding Number}" />
+                        <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding PhoneDescription}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Orientation="Vertical" >
+                <Label Content="Phone Number:" />
+                <TextBox Text="{Binding PhoneNumber}" Margin="3" />
+                <Label Content="Description:" />
+                <TextBox Text="{Binding Description}" Margin="3" />
+
+                <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Margin="5" Padding="2" />
+                <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyDeletePhoneNumberButton}" Margin="5" Padding="2" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+            <ListView ItemsSource="{Binding Emails}" BorderThickness="2" BorderBrush="Black" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Email" Width="AUTO" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding Description}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Orientation="Vertical" >
+                <Label Content="Email Address:" />
+                <TextBox Text="{Binding Email}" Margin="3" />
+                <Label Content="Description:" />
+                <TextBox Text="{Binding EmailDescription}" Margin="3" />
+
+                <Button Content="Add" Command="{Binding AddEmailCommand}" IsEnabled="{Binding CanApplyAddEmailButton}" Margin="5" Padding="2" />
+                <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyDeleteEmailButton}" Margin="5" Padding="2" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Grid.Row="3" Content="Save" Command="{Binding SaveCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
+
+    </Grid>
+</UserControl>
