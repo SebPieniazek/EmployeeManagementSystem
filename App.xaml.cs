@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagementSystem.DbContexts;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,13 @@ namespace EmployeeManagementSystem
     /// </summary>
     public partial class App : Application
     {
+        private readonly DbContextsFactory _dbContextsFactory;
+
+        public App()
+        {
+            string connectionString = @"Host=pgsql14.server758561.nazwa.pl;Database=server758561_EmployeeManagementSystem;Username=server758561_EmployeeManagementSystem;Password=EMSGreen1!";
+            _dbContextsFactory = new DbContextsFactory(connectionString);
+        }
+
     }
 }
