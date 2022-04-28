@@ -19,9 +19,53 @@ namespace EmployeeManagementSystem.Services.Editors
             _dbContextsFactory = dbContextsFactory;
         }
 
-        public Task EditEmployee(Employee employee)
+        public async Task EditEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            using (EMSContext context = _dbContextsFactory.CreateDbContext())
+            {
+                var employeeDTO = await context.Employees.Include(n => n.Emails).Include(n => n.PhoneNumbers).FirstOrDefaultAsync(n => n.ID == employee.ID);
+
+                employeeDTO.FirstName = employee.FirstName;
+                employeeDTO.LastName = employee.LastName;
+                employeeDTO.Position = employee.Position;
+                employeeDTO.City = employee.City;
+                employeeDTO.ZipCode = employee.ZipCode;
+                employeeDTO.Street = employee.Street;
+
+                foreach(PhoneNumber ph in employee.PhoneNumbers)
+                {
+                    if(ph.ID == 0)
+                    {
+                        employeeDTO.PhoneNumbers.Add(new PhoneNumberDTO { Number = ph.Number, Description = ph.Description });
+                    }
+                }
+
+                foreach(PhoneNumberDTO ph in employeeDTO.PhoneNumbers)
+                {
+                    if(!employee.PhoneNumbers.Any(n => n.ID == ph.ID))
+                    {
+                        context.Entry(ph).State = EntityState.Deleted;
+                    }
+                }
+
+                foreach (Email email in employee.Emails)
+                {
+                    if (email.ID == 0)
+                    {
+                        employeeDTO.Emails.Add(new EmailDTO { Email = email.EmailAddress, Description = email.Description });
+                    }
+                }
+
+                foreach (EmailDTO email in employeeDTO.Emails)
+                {
+                    if (!employee.Emails.Any(n => n.ID == email.ID))
+                    {
+                        context.Entry(email).State = EntityState.Deleted;
+                    }
+                }
+
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task RemoveEmployee(Employee employee)

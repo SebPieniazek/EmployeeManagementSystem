@@ -11,6 +11,19 @@ namespace EmployeeManagementSystem.Models
 {
     public class EmployerBriefcase
     {
+        public Employee _currentEmployee;
+        public Employee CurrentEmployee 
+        {
+            get
+            {
+                return _currentEmployee;
+            }
+            set
+            {
+                _currentEmployee = value;
+            }
+        }
+
         private readonly IEmployeeCreator _employeeCreator;
         private readonly IEmployeeEditor _employeeEditor;
         private readonly IEmployeeProvider _employeeProvider;

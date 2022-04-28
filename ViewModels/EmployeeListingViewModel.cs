@@ -13,6 +13,8 @@ namespace EmployeeManagementSystem.ViewModels
         private ObservableCollection<Employee> _employees;
         public IEnumerable<Employee> Employees => _employees;
 
+        private readonly EmployerBriefcase _employerBriefcase;
+
         private Employee _selectedEmployee;
         public Employee SelectedEmployee
         {
@@ -23,6 +25,7 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _selectedEmployee = value;
+                _employerBriefcase.CurrentEmployee = value;
                 OnPropertyChanged(nameof(SelectedEmployee));
                 OnPropertyChanged(nameof(CanApplyEditOrRemoveButton));
             }
@@ -30,6 +33,7 @@ namespace EmployeeManagementSystem.ViewModels
 
         public ICommand AddEmployeeCommand { get; }
         public ICommand EditEmployeeCommand { get; }
+        public ICommand NavigateCommand { get; }
         public ICommand RemoveEmployeeCommand { get; }
         public ICommand CloseWindowCommand { get; }
         public ICommand LoadEmployeesCommand { get; }
@@ -39,13 +43,26 @@ namespace EmployeeManagementSystem.ViewModels
         public EmployeeListingViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
         {
             _employees = new ObservableCollection<Employee>();
+            _employerBriefcase = employerBriefcase;
 
-            AddEmployeeCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
-            EditEmployeeCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
-            RemoveEmployeeCommand = new RemoveEmployeeCommand(this, employerBriefcase);
+            NavigateCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
+            AddEmployeeCommand = new RelayCommand(NavigateToAddEmployeeView);
+            EditEmployeeCommand = new RelayCommand(NavigateToEditEmployeeView);
+            RemoveEmployeeCommand = new RemoveEmployeeCommand(employerBriefcase);
             CloseWindowCommand = new CloseWindowCommand();
             LoadEmployeesCommand = new LoadEmployeesCommand(this, employerBriefcase);
             LoadEmployeesCommand.Execute(null);
+        }
+
+        private void NavigateToAddEmployeeView()
+        {
+            _employerBriefcase.CurrentEmployee = null;
+            NavigateCommand.Execute(null);
+        }
+
+        private void NavigateToEditEmployeeView()
+        {
+            NavigateCommand.Execute(null);
         }
 
         public void UpdateList(IEnumerable<Employee> employees)

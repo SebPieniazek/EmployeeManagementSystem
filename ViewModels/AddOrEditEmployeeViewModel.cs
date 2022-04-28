@@ -19,11 +19,6 @@ namespace EmployeeManagementSystem.ViewModels
         private ObservableCollection<Email> _emails;
         public IEnumerable<Email> Emails => _emails;
 
-        private readonly List<PhoneNumber> _addedPhoneNumbers;
-        private readonly List<PhoneNumber> _removedPhoneNumbers;
-        private readonly List<Email> _addedEmails;
-        private readonly List<Email> _removedEmails;
-
 
         private Employee _employee;
         public Employee Employee
@@ -237,11 +232,7 @@ namespace EmployeeManagementSystem.ViewModels
         public AddOrEditEmployeeViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
         {
             _phoneNumbers = new ObservableCollection<PhoneNumber>();
-            _addedPhoneNumbers = new List<PhoneNumber>();
-            _removedPhoneNumbers = new List<PhoneNumber>();
             _emails = new ObservableCollection<Email>();
-            _addedEmails = new List<Email>();
-            _removedEmails = new List<Email>();
 
             SaveEmployeeCommand = new AddOrEditEmployeeCommand(this, employerBriefcase);
             CancelCommand = new NavigateCommand(navigationStore, createEmployeeListingViewModel);
@@ -250,12 +241,29 @@ namespace EmployeeManagementSystem.ViewModels
             AddEmailCommand = new RelayCommand(AddEmail);
             RemoveEmailCommand = new RelayCommand(RemoveEmail);
 
-            FillView();
+            FillView(employerBriefcase.CurrentEmployee);
         }
 
-        private void FillView()
+        private void FillView(Employee employee)
         {
-            PageTitle = "Add Employee";
+            if (employee == null)
+            {
+                PageTitle = "Add Employee";
+            }
+            else
+            {
+                Employee = employee;
+                PageTitle = "Edit Employee";
+                FirstName = employee.FirstName;
+                LastName = employee.LastName;
+                Position = employee.Position;
+                City = employee.City;
+                ZipCode = employee.ZipCode;
+                Street = employee.Street;
+
+                _phoneNumbers = new ObservableCollection<PhoneNumber>(employee.PhoneNumbers);
+                _emails = new ObservableCollection<Email>(employee.Emails);
+            }
         }
 
         public Employee CreateEmployee(int id)
@@ -278,7 +286,6 @@ namespace EmployeeManagementSystem.ViewModels
             PhoneNumber ph = new PhoneNumber(0, PhoneNumber, PhoneNumberDescription);
 
             _phoneNumbers.Add(ph);
-            _addedPhoneNumbers.Add(ph);
 
             PhoneNumber = "";
             PhoneNumberDescription = "";
@@ -288,10 +295,6 @@ namespace EmployeeManagementSystem.ViewModels
         {
            if(SelectedPhoneNumber != null)
            {
-                if (!_addedPhoneNumbers.Remove(SelectedPhoneNumber))
-                {
-                    _removedPhoneNumbers.Add(SelectedPhoneNumber);
-                }
                 _phoneNumbers.Remove(SelectedPhoneNumber);
            }
         }
@@ -301,7 +304,6 @@ namespace EmployeeManagementSystem.ViewModels
             Email email = new Email(0, Email, EmailDescription);
 
             _emails.Add(email);
-            _addedEmails.Add(email);
 
             Email = "";
             EmailDescription = "";
@@ -311,10 +313,6 @@ namespace EmployeeManagementSystem.ViewModels
         {
             if(SelectedEmail != null)
             {
-                if (!_addedEmails.Remove(SelectedEmail))
-                {
-                    _removedEmails.Add(SelectedEmail);
-                }
                 _emails.Remove(SelectedEmail);
             }
         }

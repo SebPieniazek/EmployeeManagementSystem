@@ -25,11 +25,10 @@ namespace EmployeeManagementSystem.Commands
             if(_addOrEditEmployeeViewModel.Employee == null)
             {
                 await _employerBriefcase.AddEmployee(_addOrEditEmployeeViewModel.CreateEmployee(0));
-                MessageBox.Show("git");
             }
             else
             {
-                
+                await _employerBriefcase.EditEmployee(_addOrEditEmployeeViewModel.CreateEmployee(_addOrEditEmployeeViewModel.Employee.ID));
             }
         }
     }
