@@ -50,7 +50,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <ListView ItemsSource="{Binding PhoneNumbers}" BorderThickness="2" BorderBrush="Black" Margin="5">
+            <ListView ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding SelectedPhoneNumber}" BorderThickness="2" BorderBrush="Black" Margin="5">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Phone Number" Width="AUTO" DisplayMemberBinding="{Binding Number}" />
@@ -71,10 +71,10 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-            <ListView ItemsSource="{Binding Emails}" BorderThickness="2" BorderBrush="Black" Margin="5">
+            <ListView ItemsSource="{Binding Emails}" SelectedItem="{Binding SelectedEmail}" BorderThickness="2" BorderBrush="Black" Margin="5">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Email Address" Width="AUTO" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Email Address" Width="AUTO" DisplayMemberBinding="{Binding EmailAddress}" />
                         <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding Description}" />
                     </GridView>
                 </ListView.View>
@@ -91,7 +91,7 @@
             </StackPanel>
         </StackPanel>
 
-        <Button Grid.Row="3" Content="Save" Command="{Binding SaveCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
+        <Button Grid.Row="3" Content="Save" Command="{Binding SaveEmployeeCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
         <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
 
     </Grid>

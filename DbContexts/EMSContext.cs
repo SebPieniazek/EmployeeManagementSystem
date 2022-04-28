@@ -24,6 +24,11 @@ namespace EmployeeManagementSystem.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.UseSerialColumns();
+            modelBuilder.Entity<EmployeeDTO>().Property(b => b.ID).UseIdentityAlwaysColumn();
+            modelBuilder.Entity<PhoneNumberDTO>().Property(b => b.ID).UseIdentityAlwaysColumn();
+            modelBuilder.Entity<EmailDTO>().Property(b => b.ID).UseIdentityAlwaysColumn();
+
             base.OnModelCreating(modelBuilder);
         }
 

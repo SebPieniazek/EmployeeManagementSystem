@@ -19,18 +19,23 @@ namespace EmployeeManagementSystem.ViewModels
         private ObservableCollection<Email> _emails;
         public IEnumerable<Email> Emails => _emails;
 
+        private readonly List<PhoneNumber> _addedPhoneNumbers;
+        private readonly List<PhoneNumber> _removedPhoneNumbers;
+        private readonly List<Email> _addedEmails;
+        private readonly List<Email> _removedEmails;
 
-        private Employee _selectedEmployee;
-        public Employee SelectedEmployee
+
+        private Employee _employee;
+        public Employee Employee
         {
             get
             {
-                return _selectedEmployee;
+                return _employee;
             }
             set
             {
-                _selectedEmployee = value;
-                OnPropertyChanged(nameof(SelectedEmployee));
+                _employee = value;
+                OnPropertyChanged(nameof(Employee));
             }
         }
 
@@ -220,7 +225,7 @@ namespace EmployeeManagementSystem.ViewModels
         }
 
 
-        public ICommand SaveCommand { get; }
+        public ICommand SaveEmployeeCommand { get; }
         public ICommand CancelCommand { get; } 
         public ICommand AddPhoneNumberCommand { get; }
         public ICommand RemovePhoneNumberCommand { get; }
@@ -229,12 +234,89 @@ namespace EmployeeManagementSystem.ViewModels
 
 
 
-        public AddOrEditEmployeeViewModel(NavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
+        public AddOrEditEmployeeViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
         {
             _phoneNumbers = new ObservableCollection<PhoneNumber>();
+            _addedPhoneNumbers = new List<PhoneNumber>();
+            _removedPhoneNumbers = new List<PhoneNumber>();
             _emails = new ObservableCollection<Email>();
+            _addedEmails = new List<Email>();
+            _removedEmails = new List<Email>();
 
+            SaveEmployeeCommand = new AddOrEditEmployeeCommand(this, employerBriefcase);
             CancelCommand = new NavigateCommand(navigationStore, createEmployeeListingViewModel);
+            AddPhoneNumberCommand = new RelayCommand(AddPhoneNumber);
+            RemovePhoneNumberCommand = new RelayCommand(RemovePhoneNumber);
+            AddEmailCommand = new RelayCommand(AddEmail);
+            RemoveEmailCommand = new RelayCommand(RemoveEmail);
+
+            FillView();
+        }
+
+        private void FillView()
+        {
+            PageTitle = "Add Employee";
+        }
+
+        public Employee CreateEmployee(int id)
+        {
+            return new Employee(
+                id,
+                FirstName,
+                LastName,
+                Position,
+                City,
+                ZipCode,
+                Street,
+                new List<PhoneNumber>(PhoneNumbers),
+                new List<Email>(Emails)
+                );
+        }
+
+        private void AddPhoneNumber()
+        {
+            PhoneNumber ph = new PhoneNumber(0, PhoneNumber, PhoneNumberDescription);
+
+            _phoneNumbers.Add(ph);
+            _addedPhoneNumbers.Add(ph);
+
+            PhoneNumber = "";
+            PhoneNumberDescription = "";
+        }
+
+        private void RemovePhoneNumber()
+        {
+           if(SelectedPhoneNumber != null)
+           {
+                if (!_addedPhoneNumbers.Remove(SelectedPhoneNumber))
+                {
+                    _removedPhoneNumbers.Add(SelectedPhoneNumber);
+                }
+                _phoneNumbers.Remove(SelectedPhoneNumber);
+           }
+        }
+
+        private void AddEmail()
+        {
+            Email email = new Email(0, Email, EmailDescription);
+
+            _emails.Add(email);
+            _addedEmails.Add(email);
+
+            Email = "";
+            EmailDescription = "";
+        }
+
+        private void RemoveEmail()
+        {
+            if(SelectedEmail != null)
+            {
+                if (!_addedEmails.Remove(SelectedEmail))
+                {
+                    _removedEmails.Add(SelectedEmail);
+                }
+                _emails.Remove(SelectedEmail);
+            }
         }
     }
 }

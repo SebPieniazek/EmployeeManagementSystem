@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementSystem.DbContexts;
+using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.Stores;
 using EmployeeManagementSystem.ViewModels;
 using System;
@@ -18,6 +19,7 @@ namespace EmployeeManagementSystem
     {
         private readonly NavigationStore _navigationStore;
         private readonly DbContextsFactory _dbContextsFactory;
+        private readonly EmployerBriefcase _employerBriefcase;
 
         public App()
         {
@@ -25,6 +27,7 @@ namespace EmployeeManagementSystem
 
             string connectionString = @"Host=pgsql14.server758561.nazwa.pl;Database=server758561_EmployeeManagementSystem;Username=server758561_EmployeeManagementSystem;Password=EMSGreen1!";
             _dbContextsFactory = new DbContextsFactory(connectionString);
+            _employerBriefcase = new EmployerBriefcase(_dbContextsFactory);
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -42,7 +45,7 @@ namespace EmployeeManagementSystem
 
         private AddOrEditEmployeeViewModel CreateAddOrEditEmployeeViewModel()
         {
-            return new AddOrEditEmployeeViewModel(_navigationStore, CreateEmployeeListingViewModel);
+            return new AddOrEditEmployeeViewModel(_employerBriefcase, _navigationStore, CreateEmployeeListingViewModel);
         }
 
         private EmployeeListingViewModel CreateEmployeeListingViewModel()
