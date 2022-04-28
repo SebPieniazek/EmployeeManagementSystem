@@ -7,6 +7,7 @@ namespace EmployeeManagementSystem.Services.Editors
     {
 
         public Task EditEmployee(Employee employee);
+        public Task RemoveEmployee(Employee employee);
 
     }
 }

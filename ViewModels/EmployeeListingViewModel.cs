@@ -42,7 +42,7 @@ namespace EmployeeManagementSystem.ViewModels
 
             AddEmployeeCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
             EditEmployeeCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
-            //RemoveEmployeeCommand =
+            RemoveEmployeeCommand = new RemoveEmployeeCommand(this, employerBriefcase);
             CloseWindowCommand = new CloseWindowCommand();
             LoadEmployeesCommand = new LoadEmployeesCommand(this, employerBriefcase);
             LoadEmployeesCommand.Execute(null);

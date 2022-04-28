@@ -38,5 +38,10 @@ namespace EmployeeManagementSystem.Models
         {
             await _employeeEditor.EditEmployee(employee);
         }
+
+        public async Task RemoveEmployee(Employee employee)
+        {
+            await _employeeEditor.RemoveEmployee(employee);
+        }
     }
 }
