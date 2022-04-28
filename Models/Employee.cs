@@ -21,7 +21,7 @@ namespace EmployeeManagementSystem.Models
         public List<PhoneNumber> PhoneNumbers { get; }
         public List<Email> Emails { get; }
 
-        public Employee(int iD, string firstName, string lastName, string position, string city, string zipCode, string street, List<PhoneNumber> phoneNumbers, List<Email> emails)
+        public Employee(int iD = 0, string firstName = "", string lastName = "", string position = "", string city = "", string zipCode = "", string street = "", List<PhoneNumber> phoneNumbers = null, List<Email> emails = null)
         {
             ID = iD;
             FirstName = firstName;

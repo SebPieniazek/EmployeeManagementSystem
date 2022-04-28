@@ -21,12 +21,12 @@
                     <GridViewColumn Header="Nr" Width="AUTO" DisplayMemberBinding="{Binding Index}" />
                     <GridViewColumn Header="Employee" Width="AUTO" DisplayMemberBinding="{Binding FullName}" />
                     <GridViewColumn Header="City" Width="AUTO" DisplayMemberBinding="{Binding City}" />
-                    <GridViewColumn Header="Address" Width="AUTO" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="Employee" Width="AUTO" DisplayMemberBinding="{Binding FullName}" />
+                    <GridViewColumn Header="Zip code" Width="AUTO" DisplayMemberBinding="{Binding ZipCode}" />
+                    <GridViewColumn Header="Address" Width="AUTO" DisplayMemberBinding="{Binding Street}" />
                     <GridViewColumn Header="Phone Numbers" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding PhoneNumbers}">
+                                <ComboBox ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding PhoneNumberDescription}" />
@@ -39,10 +39,10 @@
                     <GridViewColumn Header="Emails" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Emails}">
+                                <ComboBox ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding EmailsDescription}" />
+                                            <TextBlock Text="{Binding EmailDescription}" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>

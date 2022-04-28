@@ -13,7 +13,7 @@ namespace EmployeeManagementSystem.Models
         public string Description { get; }
         public string EmailDescription { get; }
 
-        public Email(int iD, string emailAddress, string description)
+        public Email(int iD = 0, string emailAddress = "", string description = "")
         {
             ID = iD;
             EmailAddress = emailAddress;

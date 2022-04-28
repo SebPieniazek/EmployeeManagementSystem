@@ -27,7 +27,7 @@ namespace EmployeeManagementSystem.Services.Creators
                 .ForSourceMember(src => src.EmailDescription, opt => opt.DoNotValidate());
 
                 cfg.CreateMap<PhoneNumber, PhoneNumberDTO>()
-                .ForSourceMember(src => src.PhoneNumberDescrpition, opt => opt.DoNotValidate());
+                .ForSourceMember(src => src.PhoneNumberDescription, opt => opt.DoNotValidate());
 
                 cfg.CreateMap<Employee, EmployeeDTO>()
                 .ForMember(dest => dest.PhoneNumbers, act => act.MapFrom(src => src.PhoneNumbers))

@@ -32,7 +32,7 @@ namespace EmployeeManagementSystem
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new EmployeeListingViewModel(_navigationStore, CreateAddOrEditEmployeeViewModel);
+            _navigationStore.CurrentViewModel = new EmployeeListingViewModel(_employerBriefcase, _navigationStore, CreateAddOrEditEmployeeViewModel);
 
             MainWindow = new MainWindow()
             {
@@ -50,7 +50,7 @@ namespace EmployeeManagementSystem
 
         private EmployeeListingViewModel CreateEmployeeListingViewModel()
         {
-            return new EmployeeListingViewModel(_navigationStore, CreateAddOrEditEmployeeViewModel);
+            return new EmployeeListingViewModel(_employerBriefcase, _navigationStore, CreateAddOrEditEmployeeViewModel);
         }
     }
 }

@@ -5,6 +5,7 @@ using EmployeeManagementSystem.Services.Editors;
 using EmployeeManagementSystem.Services.Providers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EmployeeManagementSystem.Models
 {
@@ -21,10 +22,12 @@ namespace EmployeeManagementSystem.Models
             _employeeProvider = new EmployeeProvider(dbContextsFactory);
         }
 
-        //public async Task<IEnumerable<Employee>> GetAllEmployees()
-        //{
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        {
+            var list = await _employeeProvider.GetAllEmployees();
 
-        //}
+            return list;
+        }
 
         public async Task AddEmployee(Employee employee)
         {

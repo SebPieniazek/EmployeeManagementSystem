@@ -32,10 +32,11 @@ namespace EmployeeManagementSystem.ViewModels
         public ICommand EditEmployeeCommand { get; }
         public ICommand RemoveEmployeeCommand { get; }
         public ICommand CloseWindowCommand { get; }
+        public ICommand LoadEmployeesCommand { get; }
 
         public bool CanApplyEditOrRemoveButton => SelectedEmployee != null;
 
-        public EmployeeListingViewModel(NavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
+        public EmployeeListingViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
         {
             _employees = new ObservableCollection<Employee>();
 
@@ -43,6 +44,20 @@ namespace EmployeeManagementSystem.ViewModels
             EditEmployeeCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
             //RemoveEmployeeCommand =
             CloseWindowCommand = new CloseWindowCommand();
+            LoadEmployeesCommand = new LoadEmployeesCommand(this, employerBriefcase);
+            LoadEmployeesCommand.Execute(null);
+        }
+
+        public void UpdateList(IEnumerable<Employee> employees)
+        {
+            _employees.Clear();
+            int i = 1;
+
+            foreach(Employee employee in employees)
+            {
+                employee.Index = i++;
+                _employees.Add(employee);
+            }
         }
     }
 }
