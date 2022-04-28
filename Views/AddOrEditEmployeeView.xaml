@@ -54,7 +54,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Phone Number" Width="AUTO" DisplayMemberBinding="{Binding Number}" />
-                        <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding PhoneDescription}" />
+                        <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding Description}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -63,7 +63,7 @@
                 <Label Content="Phone Number:" />
                 <TextBox Text="{Binding PhoneNumber}" Margin="3" />
                 <Label Content="Description:" />
-                <TextBox Text="{Binding Description}" Margin="3" />
+                <TextBox Text="{Binding PhoneNumberDescription}" Margin="3" />
 
                 <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Margin="5" Padding="2" />
                 <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyDeletePhoneNumberButton}" Margin="5" Padding="2" />
@@ -74,7 +74,7 @@
             <ListView ItemsSource="{Binding Emails}" BorderThickness="2" BorderBrush="Black" Margin="5">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Email" Width="AUTO" DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="Email Address" Width="AUTO" DisplayMemberBinding="{Binding Email}" />
                         <GridViewColumn Header="Description" Width="AUTO" DisplayMemberBinding="{Binding Description}" />
                     </GridView>
                 </ListView.View>
