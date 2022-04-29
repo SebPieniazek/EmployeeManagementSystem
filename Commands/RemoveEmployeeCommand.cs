@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Commands
         {    
             await _employerBriefcase.RemoveEmployee(_employerBriefcase.CurrentEmployee);
             _employeeListingViewModel.SelectedEmployee = null;
+            _employeeListingViewModel.LoadEmployeesCommand.Execute(null);
         }
     }
 }
