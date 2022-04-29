@@ -2,8 +2,10 @@
 using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.Stores;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ using System.Windows.Input;
 
 namespace EmployeeManagementSystem.ViewModels
 {
-    public class AddOrEditEmployeeViewModel : ViewModelBase
+    public class AddOrEditEmployeeViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private ObservableCollection<PhoneNumber> _phoneNumbers;
         public IEnumerable<PhoneNumber> PhoneNumbers => _phoneNumbers;
@@ -45,6 +47,7 @@ namespace EmployeeManagementSystem.ViewModels
             {
                 _selectedPhoneNumber = value;
                 OnPropertyChanged(nameof(SelectedPhoneNumber));
+                OnPropertyChanged(nameof(CanApplyRemovePhoneNumberButton));
             }
         }
 
@@ -59,6 +62,7 @@ namespace EmployeeManagementSystem.ViewModels
             {
                 _selectedEmail = value;
                 OnPropertyChanged(nameof(SelectedEmail));
+                OnPropertyChanged(nameof(CanApplyRemoveEmailButton));
             }
         }
 
@@ -88,6 +92,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _firstName = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(FirstName));
+                if(string.IsNullOrEmpty(_firstName))
+                {
+                    AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be blank.");
+                }
+                else if(_firstName.Length > 20)
+                {
+                    AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be longer than 20 characters.");
+                }
+
                 OnPropertyChanged(nameof(FirstName));
             }
         }
@@ -102,6 +117,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _lastName = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(LastName));
+                if (string.IsNullOrEmpty(_lastName))
+                {
+                    AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be blank.");
+                }
+                else if (_lastName.Length > 30)
+                {
+                    AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be longer than 30 characters.");
+                }
+
                 OnPropertyChanged(nameof(LastName));
             }
         }
@@ -116,6 +142,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _position = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(Position));
+                if (string.IsNullOrEmpty(_position))
+                {
+                    AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be blank.");
+                }
+                else if (_position.Length > 25)
+                {
+                    AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be longer than 25 characters.");
+                }
+
                 OnPropertyChanged(nameof(Position));
             }
         }
@@ -130,6 +167,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _city = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(City));
+                if (string.IsNullOrEmpty(_city))
+                {
+                    AddError(_employeePropertyErrors, nameof(City), "The City field can't be blank.");
+                }
+                else if (_city.Length > 30)
+                {
+                    AddError(_employeePropertyErrors, nameof(City), "The City field can't be longer than 30 characters.");
+                }
+
                 OnPropertyChanged(nameof(City));
             }
         }
@@ -144,6 +192,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _zipCode = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(ZipCode));
+                if (string.IsNullOrEmpty(_zipCode))
+                {
+                    AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be blank.");
+                }
+                else if (_zipCode.Length > 10)
+                {
+                    AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be longer than 10 characters.");
+                }
+
                 OnPropertyChanged(nameof(ZipCode));
             }
         }
@@ -158,6 +217,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _street = value;
+
+                ClearErrors(_employeePropertyErrors, nameof(Street));
+                if (string.IsNullOrEmpty(_street))
+                {
+                   AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be blank.");
+                }
+                else if (_street.Length > 35)
+                {
+                    AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be longer than 35 characters.");
+                }
+
                 OnPropertyChanged(nameof(Street));
             }
         }
@@ -173,6 +243,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _email = value;
+
+                ClearErrors(_emailPropertyErrors, nameof(Email));
+                if (string.IsNullOrEmpty(_email))
+                {
+                    AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
+                }
+                else if (_email.Length > 20)
+                {
+                    AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be longer than 20 characters.");
+                }
+
                 OnPropertyChanged(nameof(Email));
             }
         }
@@ -187,6 +268,16 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _emailDescription = value;
+
+                ClearErrors(_emailPropertyErrors, nameof(EmailDescription));
+                if (!string.IsNullOrEmpty(_emailDescription))
+                {
+                    if (_emailDescription.Length > 30)
+                    {
+                        AddError(_emailPropertyErrors, nameof(EmailDescription), "The Email Description field can't be longer than 30 characters.");
+                    }
+                }
+
                 OnPropertyChanged(nameof(EmailDescription));
             }
         }
@@ -201,6 +292,17 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _phoneNumber = value;
+
+                ClearErrors(_phoneNumberPropertyErrors, nameof(PhoneNumber));
+                if (string.IsNullOrEmpty(_phoneNumber))
+                {
+                    AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be blank.");
+                }
+                else if (_phoneNumber.Length > 20)
+                {
+                    AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be longer than 20 characters.");
+                }
+
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
@@ -215,6 +317,16 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _phoneNumberDescription = value;
+
+                ClearErrors(_phoneNumberPropertyErrors, nameof(PhoneNumberDescription));
+                if (!string.IsNullOrEmpty(_phoneNumberDescription))
+                {
+                    if (_phoneNumberDescription.Length > 30)
+                    {
+                        AddError(_phoneNumberPropertyErrors, nameof(PhoneNumberDescription), "The Phone Number Description field can't be longer than 30 characters.");
+                    }
+                }
+
                 OnPropertyChanged(nameof(PhoneNumberDescription));
             }
         }
@@ -227,12 +339,31 @@ namespace EmployeeManagementSystem.ViewModels
         public ICommand AddEmailCommand { get; }
         public ICommand RemoveEmailCommand { get; }
 
+        private readonly Dictionary<string, List<string>> _propertyErrors;
+        private readonly Dictionary<string, List<string>> _employeePropertyErrors;
+        private readonly Dictionary<string, List<string>> _phoneNumberPropertyErrors;
+        private readonly Dictionary<string, List<string>> _emailPropertyErrors;
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        public bool CanApplySaveEmployeeButton => !HasEmployeePropertyErrors;
+        public bool CanApplyAddPhoneNumberButton => !HasPhoneNumberPropertyErrors;
+        public bool CanApplyRemovePhoneNumberButton => SelectedPhoneNumber != null;
+        public bool CanApplyAddEmailButton => !HasEmailPropertyErrors;
+        public bool CanApplyRemoveEmailButton => SelectedEmail != null;
+
+        public bool HasErrors => HasEmployeePropertyErrors || HasPhoneNumberPropertyErrors || HasEmployeePropertyErrors;
+        public bool HasEmployeePropertyErrors => _employeePropertyErrors.Any();
+        public bool HasPhoneNumberPropertyErrors => _phoneNumberPropertyErrors.Any();
+        public bool HasEmailPropertyErrors => _emailPropertyErrors.Any();
 
         public AddOrEditEmployeeViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
         {
             _phoneNumbers = new ObservableCollection<PhoneNumber>();
             _emails = new ObservableCollection<Email>();
+            _propertyErrors = new Dictionary<string, List<string>>();
+            _employeePropertyErrors = new Dictionary<string, List<string>>();
+            _phoneNumberPropertyErrors = new Dictionary<string, List<string>>();
+            _emailPropertyErrors = new Dictionary<string, List<string>>();
 
             SaveEmployeeCommand = new AddOrEditEmployeeCommand(this, employerBriefcase);
             CancelCommand = new NavigateCommand(navigationStore, createEmployeeListingViewModel);
@@ -241,7 +372,22 @@ namespace EmployeeManagementSystem.ViewModels
             AddEmailCommand = new RelayCommand(AddEmail);
             RemoveEmailCommand = new RelayCommand(RemoveEmail);
 
+            AddErrors();
             FillView(employerBriefcase.CurrentEmployee);
+        }
+
+        private void AddErrors()
+        {
+            AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(City), "The City field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be blank.");
+
+            AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be blank.");
+
+            AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
         }
 
         private void FillView(Employee employee)
@@ -314,6 +460,42 @@ namespace EmployeeManagementSystem.ViewModels
             if(SelectedEmail != null)
             {
                 _emails.Remove(SelectedEmail);
+            }
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _propertyErrors.GetValueOrDefault(propertyName, null);
+        }
+
+        public void AddError(Dictionary<string, List<string>> errors, string propertyName, string errorMessage)
+        {
+            if (!errors.ContainsKey(propertyName))
+            {
+                errors.Add(propertyName, new List<string>());
+                _propertyErrors.Add(propertyName, new List<string>());
+            }
+
+            errors[propertyName].Add(errorMessage);
+            _propertyErrors[propertyName].Add(errorMessage);
+            OnErrorsChanged(propertyName);
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+
+            OnPropertyChanged(nameof(CanApplySaveEmployeeButton));
+            OnPropertyChanged(nameof(CanApplyAddPhoneNumberButton));
+            OnPropertyChanged(nameof(CanApplyAddEmailButton));
+        }
+
+        public void ClearErrors(Dictionary<string, List<string>> errors, string propertyName)
+        {
+            if (errors.Remove(propertyName))
+            {
+                _propertyErrors.Remove(propertyName);
+                OnErrorsChanged(propertyName);
             }
         }
     }

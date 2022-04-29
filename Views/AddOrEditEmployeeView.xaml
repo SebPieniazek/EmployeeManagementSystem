@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:EmployeeManagementSystem.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600" Background="Aqua">
+             
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -23,29 +24,29 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <StackPanel Margin="5,5,10,0">
-                <Label Content="First Name" FontSize="15" />
-                <Label Content="Last Name" FontSize="15" />
-                <Label Content="Position" FontSize="15" />
+                <Label Content="*First Name:" FontSize="15" />
+                <Label Content="*Last Name:" FontSize="15" />
+                <Label Content="*Position:" FontSize="15" />
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding FirstName}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding LastName}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding Position}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
             <StackPanel Margin="5,5,10,0">
-                <Label Content="City" FontSize="15" />
-                <Label Content="Zip Code" FontSize="15" />
-                <Label Content="Street" FontSize="15" />
+                <Label Content="*City:" FontSize="15" />
+                <Label Content="*Zip Code:" FontSize="15" />
+                <Label Content="*Street:" FontSize="15" />
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding City}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding ZipCode}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding Street}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5" />
+                <TextBox Text="{Binding ZipCode, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
@@ -60,13 +61,13 @@
             </ListView>
 
             <StackPanel Orientation="Vertical" >
-                <Label Content="Phone Number:" />
-                <TextBox Text="{Binding PhoneNumber}" Margin="3" />
+                <Label Content="*Phone Number:" />
+                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
                 <Label Content="Description:" />
-                <TextBox Text="{Binding PhoneNumberDescription}" Margin="3" />
+                <TextBox Text="{Binding PhoneNumberDescription, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
 
                 <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Margin="5" Padding="2" />
-                <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyDeletePhoneNumberButton}" Margin="5" Padding="2" />
+                <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyRemovePhoneNumberButton}" Margin="5" Padding="2" />
             </StackPanel>
         </StackPanel>
 
@@ -81,17 +82,17 @@
             </ListView>
 
             <StackPanel Orientation="Vertical" >
-                <Label Content="Email Address:" />
-                <TextBox Text="{Binding Email}" Margin="3" />
+                <Label Content="*Email Address:" />
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
                 <Label Content="Description:" />
-                <TextBox Text="{Binding EmailDescription}" Margin="3" />
+                <TextBox Text="{Binding EmailDescription, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
 
                 <Button Content="Add" Command="{Binding AddEmailCommand}" IsEnabled="{Binding CanApplyAddEmailButton}" Margin="5" Padding="2" />
-                <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyDeleteEmailButton}" Margin="5" Padding="2" />
+                <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyRemoveEmailButton}" Margin="5" Padding="2" />
             </StackPanel>
         </StackPanel>
 
-        <Button Grid.Row="3" Content="Save" Command="{Binding SaveEmployeeCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
+        <Button Grid.Row="3" Content="Save" Command="{Binding SaveEmployeeCommand}" IsEnabled="{Binding CanApplySaveEmployeeButton}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
         <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
 
     </Grid>

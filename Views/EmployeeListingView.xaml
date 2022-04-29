@@ -26,7 +26,7 @@
                     <GridViewColumn Header="Phone Numbers" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
+                                <ComboBox Width="100" ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding PhoneNumberDescription}" />
@@ -39,7 +39,7 @@
                     <GridViewColumn Header="Emails" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
+                                <ComboBox Width="100" ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding EmailDescription}" />
