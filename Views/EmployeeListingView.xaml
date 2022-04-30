@@ -20,13 +20,14 @@
                 <GridView>
                     <GridViewColumn Header="Nr" Width="AUTO" DisplayMemberBinding="{Binding Index}" />
                     <GridViewColumn Header="Employee" Width="AUTO" DisplayMemberBinding="{Binding FullName}" />
+                    <GridViewColumn Header="Position" Width="AUTO" DisplayMemberBinding="{Binding Position}" />
                     <GridViewColumn Header="City" Width="AUTO" DisplayMemberBinding="{Binding City}" />
                     <GridViewColumn Header="Zip code" Width="AUTO" DisplayMemberBinding="{Binding ZipCode}" />
                     <GridViewColumn Header="Address" Width="AUTO" DisplayMemberBinding="{Binding Street}" />
                     <GridViewColumn Header="Phone Numbers" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Width="100" ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
+                                <ComboBox Width="100" MaxWidth="100" ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding PhoneNumberDescription}" />
@@ -39,7 +40,7 @@
                     <GridViewColumn Header="Emails" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Width="100" ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
+                                <ComboBox Width="100" MaxWidth="100" ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding EmailDescription}" />

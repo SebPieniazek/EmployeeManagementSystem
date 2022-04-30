@@ -30,9 +30,9 @@
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
+                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
+                <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
@@ -44,9 +44,9 @@
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5" />
-                <TextBox Text="{Binding ZipCode, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
-                <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" FontSize="15" MinWidth="80" Margin="5"/>
+                <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5" />
+                <TextBox Text="{Binding ZipCode, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
+                <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
@@ -62,9 +62,9 @@
 
             <StackPanel Orientation="Vertical" >
                 <Label Content="*Phone Number:" />
-                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
+                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
                 <Label Content="Description:" />
-                <TextBox Text="{Binding PhoneNumberDescription, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
+                <TextBox Text="{Binding PhoneNumberDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
 
                 <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Margin="5" Padding="2" />
                 <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyRemovePhoneNumberButton}" Margin="5" Padding="2" />
@@ -83,9 +83,9 @@
 
             <StackPanel Orientation="Vertical" >
                 <Label Content="*Email Address:" />
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
                 <Label Content="Description:" />
-                <TextBox Text="{Binding EmailDescription, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
+                <TextBox Text="{Binding EmailDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
 
                 <Button Content="Add" Command="{Binding AddEmailCommand}" IsEnabled="{Binding CanApplyAddEmailButton}" Margin="5" Padding="2" />
                 <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyRemoveEmailButton}" Margin="5" Padding="2" />
