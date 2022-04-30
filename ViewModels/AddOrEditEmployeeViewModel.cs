@@ -465,7 +465,7 @@ namespace EmployeeManagementSystem.ViewModels
 
         public IEnumerable GetErrors(string propertyName)
         {
-            return _propertyErrors.GetValueOrDefault(propertyName, null);
+            return _propertyErrors.GetValueOrDefault(propertyName, new List<string>());
         }
 
         public void AddError(Dictionary<string, List<string>> errors, string propertyName, string errorMessage)

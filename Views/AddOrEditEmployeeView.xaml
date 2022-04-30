@@ -5,7 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EmployeeManagementSystem.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600" Background="Aqua">
+             d:DesignHeight="600" d:DesignWidth="800" Background="Aqua">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
              
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -19,34 +28,34 @@
             <RowDefinition Height="3*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-
-        <TextBlock Grid.ColumnSpan="2" Text="{Binding PageTitle}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        
+        <TextBlock Grid.ColumnSpan="2" Text="{Binding PageTitle}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <StackPanel Margin="5,5,10,0">
-                <Label Content="*First Name:" FontSize="15" />
-                <Label Content="*Last Name:" FontSize="15" />
-                <Label Content="*Position:" FontSize="15" />
+                <Label Content="*First Name:" Style="{DynamicResource LabelDefaultStyle}" />
+                <Label Content="*Last Name:" Style="{DynamicResource LabelDefaultStyle}" />
+                <Label Content="*Position:" Style="{DynamicResource LabelDefaultStyle}" />
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
-                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
-                <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
+                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}"/>
+                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}"/>
+                <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
             <StackPanel Margin="5,5,10,0">
-                <Label Content="*City:" FontSize="15" />
-                <Label Content="*Zip Code:" FontSize="15" />
-                <Label Content="*Street:" FontSize="15" />
+                <Label Content="*City:" Style="{DynamicResource LabelDefaultStyle}" />
+                <Label Content="*Zip Code:" Style="{DynamicResource LabelDefaultStyle}" />
+                <Label Content="*Street:" Style="{DynamicResource LabelDefaultStyle}" />
             </StackPanel>
 
             <StackPanel Margin="5,5,10,0">
-                <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5" />
-                <TextBox Text="{Binding ZipCode, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
-                <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Width="120" Margin="5"/>
+                <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}" />
+                <TextBox Text="{Binding ZipCode, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}"/>
+                <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" Width="120" Style="{DynamicResource TextBoxDefaultStyle}"/>
             </StackPanel>
         </StackPanel>
 
@@ -61,13 +70,13 @@
             </ListView>
 
             <StackPanel Orientation="Vertical" >
-                <Label Content="*Phone Number:" />
-                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
-                <Label Content="Description:" />
-                <TextBox Text="{Binding PhoneNumberDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
+                <Label Content="*Phone Number:" Style="{DynamicResource LabelDefaultStyle}" />
+                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Width="100" Style="{DynamicResource TextBoxDefaultStyle}" />
+                <Label Content="Description:" Style="{DynamicResource LabelDefaultStyle}" />
+                <TextBox Text="{Binding PhoneNumberDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Style="{DynamicResource TextBoxDefaultStyle}" />
 
-                <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Margin="5" Padding="2" />
-                <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyRemovePhoneNumberButton}" Margin="5" Padding="2" />
+                <Button Content="Add" Command="{Binding AddPhoneNumberCommand}" IsEnabled="{Binding CanApplyAddPhoneNumberButton}" Style="{DynamicResource ButtonDefaultStyle}" />
+                <Button Content="Delete" Command="{Binding RemovePhoneNumberCommand}" IsEnabled="{Binding CanApplyRemovePhoneNumberButton}" Style="{DynamicResource ButtonDefaultStyle}" />
             </StackPanel>
         </StackPanel>
 
@@ -82,18 +91,18 @@
             </ListView>
 
             <StackPanel Orientation="Vertical" >
-                <Label Content="*Email Address:" />
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
-                <Label Content="Description:" />
-                <TextBox Text="{Binding EmailDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3" />
+                <Label Content="*Email Address:" Style="{DynamicResource LabelDefaultStyle}" />
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="100" Style="{DynamicResource TextBoxDefaultStyle}" />
+                <Label Content="Description:" Style="{DynamicResource LabelDefaultStyle}" />
+                <TextBox Text="{Binding EmailDescription, UpdateSourceTrigger=PropertyChanged}" Width="100" Style="{DynamicResource TextBoxDefaultStyle}" />
 
-                <Button Content="Add" Command="{Binding AddEmailCommand}" IsEnabled="{Binding CanApplyAddEmailButton}" Margin="5" Padding="2" />
-                <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyRemoveEmailButton}" Margin="5" Padding="2" />
+                <Button Content="Add" Command="{Binding AddEmailCommand}" IsEnabled="{Binding CanApplyAddEmailButton}" Style="{DynamicResource ButtonDefaultStyle}" />
+                <Button Content="Delete" Command="{Binding RemoveEmailCommand}" IsEnabled="{Binding CanApplyRemoveEmailButton}" Style="{DynamicResource ButtonDefaultStyle}" />
             </StackPanel>
         </StackPanel>
 
-        <Button Grid.Row="3" Content="Save" Command="{Binding SaveEmployeeCommand}" IsEnabled="{Binding CanApplySaveEmployeeButton}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
-        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" />
+        <Button Grid.Row="3" Content="Save" Command="{Binding SaveEmployeeCommand}" IsEnabled="{Binding CanApplySaveEmployeeButton}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonDefaultStyle}" />
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonDefaultStyle}" />
 
     </Grid>
 </UserControl>

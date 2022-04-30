@@ -7,7 +7,17 @@
         xmlns:views="clr-namespace:EmployeeManagementSystem.Views"
         xmlns:vms="clr-namespace:EmployeeManagementSystem.ViewModels"
         mc:Ignorable="d"
-        Title="Employee Management System" Height="450" Width="600" ResizeMode="NoResize">
+        Title="Employee Management System" Height="600" Width="800" ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:EmployeeListingViewModel}">
