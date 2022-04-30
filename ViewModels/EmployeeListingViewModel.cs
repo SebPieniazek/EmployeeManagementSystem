@@ -10,7 +10,7 @@ namespace EmployeeManagementSystem.ViewModels
 {
     public class EmployeeListingViewModel : ViewModelBase
     {
-        private ObservableCollection<Employee> _employees;
+        private readonly ObservableCollection<Employee> _employees;
         public IEnumerable<Employee> Employees => _employees;
 
         private readonly EmployerBriefcase _employerBriefcase;

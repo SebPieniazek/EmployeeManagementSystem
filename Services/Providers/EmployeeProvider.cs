@@ -5,7 +5,6 @@ using EmployeeManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace EmployeeManagementSystem.Services.Providers
 {
@@ -22,7 +21,7 @@ namespace EmployeeManagementSystem.Services.Providers
 
         private Mapper InitializeAutomapper()
         {
-            var amConfig = new MapperConfiguration(cfg =>
+            MapperConfiguration amConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<EmailDTO, Email>()
                 .ForMember(dest => dest.EmailAddress, act => act.MapFrom(src => src.Email))
@@ -36,7 +35,7 @@ namespace EmployeeManagementSystem.Services.Providers
                 .ForMember(dest => dest.Emails, act => act.MapFrom(src => src.Emails));
             });
 
-            var mapper = new Mapper(amConfig);
+            Mapper mapper = new Mapper(amConfig);
             return mapper;
         }
 
@@ -44,15 +43,15 @@ namespace EmployeeManagementSystem.Services.Providers
         {
             using (EMSContext context = _dbContextsFactory.CreateDbContext())
             {
-                var list = await context.Employees.Include(n => n.Emails).Include(n => n.PhoneNumbers).ToListAsync();
-                List<Employee> returnList = new List<Employee>();
+                List<EmployeeDTO> employeeDTOs = await context.Employees.Include(n => n.Emails).Include(n => n.PhoneNumbers).ToListAsync();
+                List<Employee> employes = new List<Employee>();
 
-                foreach (EmployeeDTO employee in list)
+                foreach (EmployeeDTO employee in employeeDTOs)
                 {
-                    returnList.Add(_mapper.Map<Employee>(employee));
+                    employes.Add(_mapper.Map<Employee>(employee));
                 }
 
-                return returnList;
+                return employes;
             }
         }
     }

@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace EmployeeManagementSystem.ViewModels
@@ -333,7 +331,7 @@ namespace EmployeeManagementSystem.ViewModels
 
 
         public ICommand SaveEmployeeCommand { get; }
-        public ICommand CancelCommand { get; } 
+        public ICommand CancelCommand { get; }
         public ICommand AddPhoneNumberCommand { get; }
         public ICommand RemovePhoneNumberCommand { get; }
         public ICommand AddEmailCommand { get; }
@@ -376,20 +374,6 @@ namespace EmployeeManagementSystem.ViewModels
             FillView(employerBriefcase.CurrentEmployee);
         }
 
-        private void AddErrors()
-        {
-            AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be blank.");
-            AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be blank.");
-            AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be blank.");
-            AddError(_employeePropertyErrors, nameof(City), "The City field can't be blank.");
-            AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be blank.");
-            AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be blank.");
-
-            AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be blank.");
-
-            AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
-        }
-
         private void FillView(Employee employee)
         {
             if (employee == null)
@@ -410,21 +394,6 @@ namespace EmployeeManagementSystem.ViewModels
                 _phoneNumbers = new ObservableCollection<PhoneNumber>(employee.PhoneNumbers);
                 _emails = new ObservableCollection<Email>(employee.Emails);
             }
-        }
-
-        public Employee CreateEmployee(int id)
-        {
-            return new Employee(
-                id,
-                FirstName,
-                LastName,
-                Position,
-                City,
-                ZipCode,
-                Street,
-                new List<PhoneNumber>(PhoneNumbers),
-                new List<Email>(Emails)
-                );
         }
 
         private void AddPhoneNumber()
@@ -463,12 +432,41 @@ namespace EmployeeManagementSystem.ViewModels
             }
         }
 
+        public Employee CreateEmployee(int id)
+        {
+            return new Employee(
+                id,
+                FirstName,
+                LastName,
+                Position,
+                City,
+                ZipCode,
+                Street,
+                new List<PhoneNumber>(PhoneNumbers),
+                new List<Email>(Emails)
+                );
+        }
+
+        private void AddErrors()
+        {
+            AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(City), "The City field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be blank.");
+            AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be blank.");
+
+            AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be blank.");
+
+            AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
+        }
+
         public IEnumerable GetErrors(string propertyName)
         {
             return _propertyErrors.GetValueOrDefault(propertyName, new List<string>());
         }
 
-        public void AddError(Dictionary<string, List<string>> errors, string propertyName, string errorMessage)
+        private void AddError(Dictionary<string, List<string>> errors, string propertyName, string errorMessage)
         {
             if (!errors.ContainsKey(propertyName))
             {
@@ -490,7 +488,7 @@ namespace EmployeeManagementSystem.ViewModels
             OnPropertyChanged(nameof(CanApplyAddEmailButton));
         }
 
-        public void ClearErrors(Dictionary<string, List<string>> errors, string propertyName)
+        private void ClearErrors(Dictionary<string, List<string>> errors, string propertyName)
         {
             if (errors.Remove(propertyName))
             {

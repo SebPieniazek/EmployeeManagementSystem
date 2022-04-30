@@ -4,9 +4,7 @@ using EmployeeManagementSystem.Services.Creators;
 using EmployeeManagementSystem.Services.Editors;
 using EmployeeManagementSystem.Services.Providers;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace EmployeeManagementSystem.Models
 {

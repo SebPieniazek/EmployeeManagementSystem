@@ -2,7 +2,6 @@
 using EmployeeManagementSystem.DbContexts;
 using EmployeeManagementSystem.DTOs;
 using EmployeeManagementSystem.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem.Services.Creators
@@ -20,7 +19,7 @@ namespace EmployeeManagementSystem.Services.Creators
 
         private Mapper InitializeAutomapper()
         {
-            var amConfig = new MapperConfiguration(cfg =>
+            MapperConfiguration amConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Email, EmailDTO>()
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.EmailAddress))
@@ -34,7 +33,7 @@ namespace EmployeeManagementSystem.Services.Creators
                 .ForMember(dest => dest.Emails, act => act.MapFrom(src => src.Emails));
             });
 
-            var mapper = new Mapper(amConfig);
+            Mapper mapper = new Mapper(amConfig);
             return mapper;
         }
 
@@ -42,15 +41,10 @@ namespace EmployeeManagementSystem.Services.Creators
         {
             using (EMSContext context = _dbContextsFactory.CreateDbContext())
             {
-                context.Employees.Add(ToEmployeeDTO(employee));
+                context.Employees.Add(_mapper.Map<EmployeeDTO>(employee));
 
                 await context.SaveChangesAsync();
             }
-        }
-
-        public EmployeeDTO ToEmployeeDTO(Employee employee)
-        {
-            return _mapper.Map<EmployeeDTO>(employee);
         }
     }
 }
