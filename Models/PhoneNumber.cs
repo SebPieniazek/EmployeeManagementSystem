@@ -14,7 +14,7 @@ namespace EmployeeManagementSystem.Models
             Number = number;
             Description = description;
 
-            PhoneNumberDescription = Number + " " + Description;
+            PhoneNumberDescription = Number + " - " + Description;
         }
     }
 }

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:EmployeeManagementSystem.Views"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="800" Background="Aqua">
+             d:DesignHeight="600" 
+             d:DesignWidth="800" 
+             Background="Aqua">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,14 +19,19 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="4*" />
             <RowDefinition Height="2*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="Employee Managment System" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" BorderThickness="2" BorderBrush="Black" Margin="4">
+        <ListView Grid.Row="1" 
+                  ItemsSource="{Binding Employees}" 
+                  SelectedItem="{Binding SelectedEmployee}" 
+                  BorderThickness="2" 
+                  BorderBrush="Black" 
+                  Margin="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nr" Width="AUTO" DisplayMemberBinding="{Binding Index}" />
@@ -37,7 +43,10 @@
                     <GridViewColumn Header="Phone Numbers" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Width="100" MaxWidth="100" ItemsSource="{Binding PhoneNumbers}" SelectedItem="{Binding PhoneNumbers[0]}">
+                                <ComboBox 
+                                    Width="100" MaxWidth="100" 
+                                    ItemsSource="{Binding PhoneNumbers}" 
+                                    SelectedItem="{Binding PhoneNumbers[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding PhoneNumberDescription}" />
@@ -50,7 +59,10 @@
                     <GridViewColumn Header="Emails" Width="AUTO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Width="100" MaxWidth="100" ItemsSource="{Binding Emails}" SelectedItem="{Binding Emails[0]}">
+                                <ComboBox 
+                                    Width="100" MaxWidth="100" 
+                                    ItemsSource="{Binding Emails}" 
+                                    SelectedItem="{Binding Emails[0]}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding EmailDescription}" />
@@ -67,12 +79,32 @@
         
         <StackPanel Grid.Row="2" Margin="10" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Add" Command="{Binding AddEmployeeCommand}" Width="100" Style="{DynamicResource ButtonDefaultStyle}"/>
-                <Button Content="Edit" Command="{Binding EditEmployeeCommand}" IsEnabled="{Binding CanApplyEditOrRemoveButton}" Width="100" Style="{DynamicResource ButtonDefaultStyle}" />
-                <Button Content="Remove" Command="{Binding RemoveEmployeeCommand}" IsEnabled="{Binding CanApplyEditOrRemoveButton}" Width="100" Style="{DynamicResource ButtonDefaultStyle}" />
+                
+                <Button Content="Add" 
+                        Command="{Binding AddEmployeeCommand}" 
+                        Width="100" 
+                        Style="{DynamicResource ButtonDefaultStyle}"/>
+                <Button Content="Edit" 
+                        Command="{Binding EditEmployeeCommand}" 
+                        IsEnabled="{Binding CanApplyEditOrRemoveButton}" 
+                        Width="100" 
+                        Style="{DynamicResource ButtonDefaultStyle}" />
+                <Button Content="Remove" 
+                        Command="{Binding RemoveEmployeeCommand}"
+                        IsEnabled="{Binding CanApplyEditOrRemoveButton}" 
+                        Width="100" 
+                        Style="{DynamicResource ButtonDefaultStyle}" />
+                
             </StackPanel>
 
-            <Button Content="Exit" Command="{Binding CloseWindowCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="25" Padding="5" Style="{DynamicResource ButtonDefaultStyle}" />
+            <Button Content="Exit" 
+                    Command="{Binding CloseWindowCommand}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="150" 
+                    Margin="25"
+                    Padding="5" 
+                    Style="{DynamicResource ButtonDefaultStyle}" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -14,7 +14,7 @@ namespace EmployeeManagementSystem.Models
             EmailAddress = emailAddress;
             Description = description;
 
-            EmailDescription = EmailAddress + " " + Description;
+            EmailDescription = EmailAddress + " - " + Description;
         }
     }
 }
