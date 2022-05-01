@@ -4,12 +4,12 @@ namespace EmployeeManagementSystem.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly NavigationStore _navigationStore;
+        private readonly INavigationStore _navigationStore;
 
 
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
-        public MainViewModel(NavigationStore navigationStore)
+        public MainViewModel(INavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
 

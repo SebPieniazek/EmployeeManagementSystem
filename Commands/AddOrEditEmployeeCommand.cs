@@ -7,9 +7,9 @@ namespace EmployeeManagementSystem.Commands
     public class AddOrEditEmployeeCommand : AsyncCommandBase
     {
         private readonly AddOrEditEmployeeViewModel _addOrEditEmployeeViewModel;
-        private readonly EmployerBriefcase _employerBriefcase;
+        private readonly IEmployerBriefcase _employerBriefcase;
 
-        public AddOrEditEmployeeCommand(AddOrEditEmployeeViewModel addOrEditEmployeeViewModel, EmployerBriefcase employerBriefcase)
+        public AddOrEditEmployeeCommand(AddOrEditEmployeeViewModel addOrEditEmployeeViewModel, IEmployerBriefcase employerBriefcase)
         {
             _addOrEditEmployeeViewModel = addOrEditEmployeeViewModel;
             _employerBriefcase = employerBriefcase;

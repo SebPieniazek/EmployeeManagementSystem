@@ -1,5 +1,4 @@
 ﻿using EmployeeManagementSystem.DbContexts;
-using EmployeeManagementSystem.DTOs;
 using EmployeeManagementSystem.Services.Creators;
 using EmployeeManagementSystem.Services.Editors;
 using EmployeeManagementSystem.Services.Providers;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem.Models
 {
-    public class EmployerBriefcase
+    public class EmployerBriefcase : IEmployerBriefcase
     {
         private List<Employee> _employees;
 

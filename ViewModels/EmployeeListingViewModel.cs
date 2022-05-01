@@ -13,7 +13,7 @@ namespace EmployeeManagementSystem.ViewModels
         private readonly ObservableCollection<Employee> _employees;
         public IEnumerable<Employee> Employees => _employees;
 
-        private readonly EmployerBriefcase _employerBriefcase;
+        private readonly IEmployerBriefcase _employerBriefcase;
 
         private Employee _selectedEmployee;
         public Employee SelectedEmployee
@@ -40,7 +40,7 @@ namespace EmployeeManagementSystem.ViewModels
 
         public bool CanApplyEditOrRemoveButton => SelectedEmployee != null;
 
-        public EmployeeListingViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
+        public EmployeeListingViewModel(IEmployerBriefcase employerBriefcase, INavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
         {
             _employees = new ObservableCollection<Employee>();
             _employerBriefcase = employerBriefcase;

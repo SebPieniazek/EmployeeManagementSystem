@@ -354,7 +354,7 @@ namespace EmployeeManagementSystem.ViewModels
         public bool HasPhoneNumberPropertyErrors => _phoneNumberPropertyErrors.Any();
         public bool HasEmailPropertyErrors => _emailPropertyErrors.Any();
 
-        public AddOrEditEmployeeViewModel(EmployerBriefcase employerBriefcase, NavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
+        public AddOrEditEmployeeViewModel(IEmployerBriefcase employerBriefcase, INavigationStore navigationStore, Func<EmployeeListingViewModel> createEmployeeListingViewModel)
         {
             _phoneNumbers = new ObservableCollection<PhoneNumber>();
             _emails = new ObservableCollection<Email>();

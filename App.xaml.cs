@@ -17,9 +17,9 @@ namespace EmployeeManagementSystem
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore _navigationStore;
+        private readonly INavigationStore _navigationStore;
         private readonly DbContextsFactory _dbContextsFactory;
-        private readonly EmployerBriefcase _employerBriefcase;
+        private readonly IEmployerBriefcase _employerBriefcase;
 
         public App()
         {

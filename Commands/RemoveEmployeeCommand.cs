@@ -7,9 +7,9 @@ namespace EmployeeManagementSystem.Commands
     public class RemoveEmployeeCommand : AsyncCommandBase
     {
         private readonly EmployeeListingViewModel _employeeListingViewModel;
-        private readonly EmployerBriefcase _employerBriefcase;
+        private readonly IEmployerBriefcase _employerBriefcase;
 
-        public RemoveEmployeeCommand(EmployeeListingViewModel employeeListingViewModel, EmployerBriefcase employerBriefcase)
+        public RemoveEmployeeCommand(EmployeeListingViewModel employeeListingViewModel, IEmployerBriefcase employerBriefcase)
         {
             _employeeListingViewModel = employeeListingViewModel;
             _employerBriefcase = employerBriefcase;

@@ -7,9 +7,9 @@ namespace EmployeeManagementSystem.Commands
     public class LoadEmployeesCommand : AsyncCommandBase
     {
         private readonly EmployeeListingViewModel _employeeListingViewModel;
-        private readonly EmployerBriefcase _employerBriefcase;
+        private readonly IEmployerBriefcase _employerBriefcase;
 
-        public LoadEmployeesCommand(EmployeeListingViewModel employeeListingViewModel, EmployerBriefcase employerBriefcase)
+        public LoadEmployeesCommand(EmployeeListingViewModel employeeListingViewModel, IEmployerBriefcase employerBriefcase)
         {
             _employeeListingViewModel = employeeListingViewModel;
             _employerBriefcase = employerBriefcase;

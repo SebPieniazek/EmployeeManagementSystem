@@ -3,7 +3,7 @@ using System;
 
 namespace EmployeeManagementSystem.Stores
 {
-    public class NavigationStore
+    public class NavigationStore : INavigationStore
 
     {
         private ViewModelBase _currentViewModel;
