@@ -2,6 +2,10 @@
 
 namespace EmployeeManagementSystem.ViewModels
 {
+    /// <summary>
+    ///     It's responsible for change DataContex.
+    /// </summary>
+
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigationStore _navigationStore;

@@ -20,7 +20,10 @@ namespace EmployeeManagementSystem.Services.Editors
         {
             using (EMSContext context = _dbContextsFactory.CreateDbContext())
             {
-                EmployeeDTO employeeDTO = await context.Employees.Include(n => n.Emails).Include(n => n.PhoneNumbers).FirstOrDefaultAsync(n => n.ID == employee.ID);
+                EmployeeDTO employeeDTO = await context.Employees
+                    .Include(n => n.Emails)
+                    .Include(n => n.PhoneNumbers)
+                    .FirstOrDefaultAsync(n => n.ID == employee.ID);
 
                 employeeDTO.FirstName = employee.FirstName;
                 employeeDTO.LastName = employee.LastName;

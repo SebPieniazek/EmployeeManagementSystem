@@ -43,7 +43,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox 
-                                    Width="100" MaxWidth="100" 
+                                    Width="125" MaxWidth="125" 
                                     ItemsSource="{Binding PhoneNumbers}" 
                                     SelectedItem="{Binding PhoneNumbers[0]}">
                                     <ComboBox.ItemTemplate>
@@ -59,7 +59,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox 
-                                    Width="100" MaxWidth="100" 
+                                    Width="125" MaxWidth="125" 
                                     ItemsSource="{Binding Emails}" 
                                     SelectedItem="{Binding Emails[0]}">
                                     <ComboBox.ItemTemplate>

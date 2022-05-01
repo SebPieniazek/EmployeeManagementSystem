@@ -5,6 +5,11 @@ using EmployeeManagementSystem.Services.Providers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/// <summary>
+///    It's responsible for storing the employee list to avoid reloading the database.
+///    It also performs all tasks related to connecting to the database.
+/// </summary>
+
 namespace EmployeeManagementSystem.Models
 {
     public class EmployerBriefcase : IEmployerBriefcase

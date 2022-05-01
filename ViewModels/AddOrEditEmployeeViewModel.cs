@@ -10,6 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
+/// <summary>
+///     Logic for add OR edit employee.xaml.
+///     It's depends on employer briefcase, if employerBreifcase.EmployeeToEdit is null it's open
+///     view as Add employee, in opposite as edit employee.
+/// </summary>
+
 namespace EmployeeManagementSystem.ViewModels
 {
     public class AddOrEditEmployeeViewModel : ViewModelBase, INotifyDataErrorInfo

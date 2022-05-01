@@ -12,16 +12,6 @@ namespace EmployeeManagementSystem.DbContexts
         public EMSContext() { }
         public EMSContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql(@"Host=pgsql14.server758561.nazwa.pl;Database=server758561_EmployeeManagementSystem;Username=server758561_EmployeeManagementSystem;Password=EMSGreen1!");
-            }
-
-            base.OnConfiguring(optionsBuilder);
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
@@ -31,7 +21,5 @@ namespace EmployeeManagementSystem.DbContexts
 
             base.OnModelCreating(modelBuilder);
         }
-
-
     }
 }
