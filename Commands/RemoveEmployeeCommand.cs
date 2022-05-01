@@ -17,9 +17,9 @@ namespace EmployeeManagementSystem.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {    
-            await _employerBriefcase.RemoveEmployee(_employerBriefcase.CurrentEmployee);
+            await _employerBriefcase.RemoveEmployee(_employerBriefcase.EmployeeToEdit);
             _employeeListingViewModel.SelectedEmployee = null;
-            _employerBriefcase.CurrentEmployee = null;
+            _employerBriefcase.EmployeeToEdit = null;
             _employeeListingViewModel.LoadEmployeesCommand.Execute(null);
         }
     }

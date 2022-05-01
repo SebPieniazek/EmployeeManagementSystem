@@ -11,16 +11,16 @@ namespace EmployeeManagementSystem.Models
     {
         private List<Employee> _employees;
 
-        public Employee _currentEmployee;
-        public Employee CurrentEmployee 
+        public Employee _employeeToEdit;
+        public Employee EmployeeToEdit 
         {
             get
             {
-                return _currentEmployee;
+                return _employeeToEdit;
             }
             set
             {
-                _currentEmployee = value;
+                _employeeToEdit = value;
             }
         }
 
@@ -54,7 +54,7 @@ namespace EmployeeManagementSystem.Models
         public async Task EditEmployee(Employee employee)
         {
             await _employeeEditor.EditEmployee(employee);
-            _employees.Remove(CurrentEmployee);
+            _employees.Remove(EmployeeToEdit);
             _employees.Add(employee);
         }
 

@@ -5,7 +5,7 @@ namespace EmployeeManagementSystem.Models
 {
     public interface IEmployerBriefcase
     {
-        public Employee CurrentEmployee { get; set; }
+        public Employee EmployeeToEdit { get; set; }
 
         public Task<IEnumerable<Employee>> GetAllEmployees();
         public Task AddEmployee(Employee employee);

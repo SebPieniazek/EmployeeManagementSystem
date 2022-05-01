@@ -11,8 +11,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml">
-                </ResourceDictionary>
+                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

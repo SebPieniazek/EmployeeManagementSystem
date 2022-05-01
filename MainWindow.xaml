@@ -3,17 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EmployeeManagementSystem"
         xmlns:views="clr-namespace:EmployeeManagementSystem.Views"
         xmlns:vms="clr-namespace:EmployeeManagementSystem.ViewModels"
         mc:Ignorable="d"
-        Title="Employee Management System" Height="600" Width="800" ResizeMode="NoResize">
+        Title="Employee Management System" 
+        Height="600" Width="800" 
+        ResizeMode="NoResize">
     
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml">
-                </ResourceDictionary>
+                <ResourceDictionary Source="/EmployeeManagementSystem;component/css/MyStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>

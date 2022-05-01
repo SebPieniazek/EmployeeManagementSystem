@@ -25,7 +25,6 @@ namespace EmployeeManagementSystem.ViewModels
             set
             {
                 _selectedEmployee = value;
-                _employerBriefcase.CurrentEmployee = value;
                 OnPropertyChanged(nameof(SelectedEmployee));
                 OnPropertyChanged(nameof(CanApplyEditOrRemoveButton));
             }
@@ -56,12 +55,13 @@ namespace EmployeeManagementSystem.ViewModels
 
         private void NavigateToAddEmployeeView()
         {
-            _employerBriefcase.CurrentEmployee = null;
+            _employerBriefcase.EmployeeToEdit = null;
             NavigateCommand.Execute(null);
         }
 
         private void NavigateToEditEmployeeView()
         {
+            _employerBriefcase.EmployeeToEdit = SelectedEmployee;
             NavigateCommand.Execute(null);
         }
 

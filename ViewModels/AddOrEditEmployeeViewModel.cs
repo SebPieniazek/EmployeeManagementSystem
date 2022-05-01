@@ -371,7 +371,7 @@ namespace EmployeeManagementSystem.ViewModels
             RemoveEmailCommand = new RelayCommand(RemoveEmail);
 
             AddErrors();
-            FillView(employerBriefcase.CurrentEmployee);
+            FillView(employerBriefcase.EmployeeToEdit);
         }
 
         private void FillView(Employee employee)
