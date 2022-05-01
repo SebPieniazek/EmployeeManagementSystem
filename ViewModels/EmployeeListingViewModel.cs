@@ -53,6 +53,11 @@ namespace EmployeeManagementSystem.ViewModels
             LoadEmployeesCommand.Execute(null);
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
         private void NavigateToAddEmployeeView()
         {
             _employerBriefcase.EmployeeToEdit = null;

@@ -374,6 +374,11 @@ namespace EmployeeManagementSystem.ViewModels
             FillView(employerBriefcase.EmployeeToEdit);
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
         private void FillView(Employee employee)
         {
             if (employee == null)
