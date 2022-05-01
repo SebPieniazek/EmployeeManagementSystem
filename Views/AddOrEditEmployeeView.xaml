@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" 
              d:DesignWidth="800" 
-             Background="Aqua">
+             Background="LightSlateGray">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -32,6 +32,8 @@
         <TextBlock Grid.ColumnSpan="2" 
                    Text="{Binding PageTitle}" 
                    FontSize="35" 
+                   Foreground="Coral" 
+                   FontWeight="Bold" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Center" />
 
@@ -91,6 +93,7 @@
             <ListView ItemsSource="{Binding PhoneNumbers}" 
                       SelectedItem="{Binding SelectedPhoneNumber}" 
                       Width="200" Height="220"
+                      Background="Beige"
                       BorderThickness="2" BorderBrush="Black" Margin="5">
                 <ListView.View>
                     <GridView>
@@ -133,6 +136,7 @@
             <ListView ItemsSource="{Binding Emails}" 
                       SelectedItem="{Binding SelectedEmail}"
                       Width="200" Height="220"
+                      Background="Beige"
                       BorderThickness="2" BorderBrush="Black" Margin="5">
                 <ListView.View>
                     <GridView>

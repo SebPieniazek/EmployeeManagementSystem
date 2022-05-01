@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" 
              d:DesignWidth="800" 
-             Background="Aqua">
+             Background="LightSlateGray">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -23,13 +23,18 @@
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Employee Managment System" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Text="Employee Managment System" 
+                   Foreground="Coral" 
+                   FontWeight="Bold" 
+                   FontSize="40" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         <ListView Grid.Row="1" 
                   ItemsSource="{Binding Employees}" 
                   SelectedItem="{Binding SelectedEmployee}" 
                   BorderThickness="2" 
-                  BorderBrush="Black" 
+                  BorderBrush="Black"
+                  Background="Beige"
                   Margin="4">
             <ListView.View>
                 <GridView>
