@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Windows.Input;
 
 namespace EmployeeManagementSystem.ViewModels
@@ -46,6 +47,7 @@ namespace EmployeeManagementSystem.ViewModels
                 _selectedPhoneNumber = value;
                 OnPropertyChanged(nameof(SelectedPhoneNumber));
                 OnPropertyChanged(nameof(CanApplyRemovePhoneNumberButton));
+                OnPropertyChanged(nameof(ShowRemovePhoneNumberButtonToolTip));
             }
         }
 
@@ -61,6 +63,7 @@ namespace EmployeeManagementSystem.ViewModels
                 _selectedEmail = value;
                 OnPropertyChanged(nameof(SelectedEmail));
                 OnPropertyChanged(nameof(CanApplyRemoveEmailButton));
+                OnPropertyChanged(nameof(ShowRemoveEmailButtonToolTip));
             }
         }
 
@@ -100,6 +103,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be longer than 40 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(FirstName));
             }
@@ -125,6 +129,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be longer than 40 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(LastName));
             }
@@ -150,6 +155,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be longer than 40 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(Position));
             }
@@ -175,6 +181,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(City), "The City field can't be longer than 30 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(City));
             }
@@ -200,6 +207,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be longer than 10 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(ZipCode));
             }
@@ -225,6 +233,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be longer than 35 characters.");
                 }
+                FillSaveButtonToolTip();
 
                 OnPropertyChanged(nameof(Street));
             }
@@ -252,6 +261,7 @@ namespace EmployeeManagementSystem.ViewModels
                     AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be longer than 40 characters.");
                 }
 
+                FillAddEmailButtonToolTip();
                 OnPropertyChanged(nameof(Email));
             }
         }
@@ -275,6 +285,7 @@ namespace EmployeeManagementSystem.ViewModels
                         AddError(_emailPropertyErrors, nameof(EmailDescription), "The Email Description field can't be longer than 30 characters.");
                     }
                 }
+                FillAddEmailButtonToolTip();
 
                 OnPropertyChanged(nameof(EmailDescription));
             }
@@ -300,6 +311,7 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be longer than 20 characters.");
                 }
+                FillAddPhoneNumberButtonToolTip();
 
                 OnPropertyChanged(nameof(PhoneNumber));
             }
@@ -324,6 +336,7 @@ namespace EmployeeManagementSystem.ViewModels
                         AddError(_phoneNumberPropertyErrors, nameof(PhoneNumberDescription), "The Phone Number Description field can't be longer than 30 characters.");
                     }
                 }
+                FillAddPhoneNumberButtonToolTip();
 
                 OnPropertyChanged(nameof(PhoneNumberDescription));
             }
@@ -343,6 +356,83 @@ namespace EmployeeManagementSystem.ViewModels
         private readonly Dictionary<string, List<string>> _emailPropertyErrors;
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+
+        private string _saveButtonToolTip;
+        public string SaveButtonToolTip
+        {
+            get
+            {
+                return _saveButtonToolTip;
+            }
+            set
+            {
+                _saveButtonToolTip = value;
+                OnPropertyChanged(nameof(SaveButtonToolTip));
+            }
+        }
+
+        private string _addPhoneNumberButtonToolTip;
+        public string AddPhoneNumberButtonToolTip
+        {
+            get
+            {
+                return _addPhoneNumberButtonToolTip;
+            }
+            set
+            {
+                _addPhoneNumberButtonToolTip = value;
+                OnPropertyChanged(nameof(AddPhoneNumberButtonToolTip));
+            }
+        }
+
+        private string _removePhoneNumberButtonToolTip;
+        public string RemovePhoneNumberButtonToolTip
+        {
+            get
+            {
+                return _removePhoneNumberButtonToolTip;
+            }
+            set
+            {
+                _removePhoneNumberButtonToolTip = value;
+                OnPropertyChanged(nameof(RemovePhoneNumberButtonToolTip));
+            }
+        }
+
+        private string _addEmailButtonToolTip;
+        public string AddEmailButtonToolTip
+        {
+            get
+            {
+                return _addEmailButtonToolTip;
+            }
+            set
+            {
+                _addEmailButtonToolTip = value;
+                OnPropertyChanged(nameof(AddEmailButtonToolTip));
+            }
+        }
+
+        private string _removeEmailButtonToolTip;
+        public string RemoveEmailButtonToolTip
+        {
+            get
+            {
+                return _removeEmailButtonToolTip;
+            }
+            set
+            {
+                _removeEmailButtonToolTip = value;
+                OnPropertyChanged(nameof(RemoveEmailButtonToolTip));
+            }
+        }
+
+        public bool ShowSaveButtonToolTip => HasEmployeePropertyErrors;
+        public bool ShowAddPhoneNumberButtonToolTip => HasPhoneNumberPropertyErrors;
+        public bool ShowRemovePhoneNumberButtonToolTip => SelectedPhoneNumber == null;
+        public bool ShowAddEmailButtonToolTip => HasEmailPropertyErrors;
+        public bool ShowRemoveEmailButtonToolTip => SelectedEmail == null;
+
         public bool CanApplySaveEmployeeButton => !HasEmployeePropertyErrors;
         public bool CanApplyAddPhoneNumberButton => !HasPhoneNumberPropertyErrors;
         public bool CanApplyRemovePhoneNumberButton => SelectedPhoneNumber != null;
@@ -358,10 +448,14 @@ namespace EmployeeManagementSystem.ViewModels
         {
             _phoneNumbers = new ObservableCollection<PhoneNumber>();
             _emails = new ObservableCollection<Email>();
+
             _propertyErrors = new Dictionary<string, List<string>>();
             _employeePropertyErrors = new Dictionary<string, List<string>>();
             _phoneNumberPropertyErrors = new Dictionary<string, List<string>>();
             _emailPropertyErrors = new Dictionary<string, List<string>>();
+
+            RemoveEmailButtonToolTip = "Select email";
+            RemovePhoneNumberButtonToolTip = "Select phone number";
 
             SaveEmployeeCommand = new AddOrEditEmployeeCommand(this, employerBriefcase);
             CancelCommand = new NavigateCommand(navigationStore, createEmployeeListingViewModel);
@@ -460,10 +554,13 @@ namespace EmployeeManagementSystem.ViewModels
             AddError(_employeePropertyErrors, nameof(City), "The City field can't be blank.");
             AddError(_employeePropertyErrors, nameof(ZipCode), "The Zip Code field can't be blank.");
             AddError(_employeePropertyErrors, nameof(Street), "The Street field can't be blank.");
+            FillSaveButtonToolTip();
 
             AddError(_phoneNumberPropertyErrors, nameof(PhoneNumber), "The Phone Number field can't be blank.");
+            FillAddPhoneNumberButtonToolTip();
 
             AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
+            FillAddEmailButtonToolTip();
         }
 
         public IEnumerable GetErrors(string propertyName)
@@ -491,6 +588,9 @@ namespace EmployeeManagementSystem.ViewModels
             OnPropertyChanged(nameof(CanApplySaveEmployeeButton));
             OnPropertyChanged(nameof(CanApplyAddPhoneNumberButton));
             OnPropertyChanged(nameof(CanApplyAddEmailButton));
+            OnPropertyChanged(nameof(ShowSaveButtonToolTip));
+            OnPropertyChanged(nameof(ShowAddPhoneNumberButtonToolTip));
+            OnPropertyChanged(nameof(ShowAddEmailButtonToolTip));
         }
 
         private void ClearErrors(Dictionary<string, List<string>> errors, string propertyName)
@@ -500,6 +600,48 @@ namespace EmployeeManagementSystem.ViewModels
                 _propertyErrors.Remove(propertyName);
                 OnErrorsChanged(propertyName);
             }
+        }
+
+        private void FillAddEmailButtonToolTip()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(KeyValuePair<string, List<string>> list in _emailPropertyErrors)
+            {
+                foreach(string str in list.Value)
+                {
+                    sb.Append(str);
+                    sb.Append(" \n");
+                }
+            }
+            AddEmailButtonToolTip = sb.ToString();
+        }
+
+        private void FillAddPhoneNumberButtonToolTip()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (KeyValuePair<string, List<string>> list in _phoneNumberPropertyErrors)
+            {
+                foreach(string str in list.Value)
+                {
+                    sb.Append(str);
+                    sb.Append(" \n");
+                }
+            }
+            AddPhoneNumberButtonToolTip = sb.ToString();
+        }
+
+        private void FillSaveButtonToolTip()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (KeyValuePair<string, List<string>> list in _employeePropertyErrors)
+            {
+                foreach (string str in list.Value)
+                {
+                    sb.Append(str);
+                    sb.Append(" \n");
+                }
+            }
+            SaveButtonToolTip = sb.ToString();
         }
     }
 }

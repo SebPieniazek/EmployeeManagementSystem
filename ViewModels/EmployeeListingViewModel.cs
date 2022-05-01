@@ -27,6 +27,7 @@ namespace EmployeeManagementSystem.ViewModels
                 _selectedEmployee = value;
                 OnPropertyChanged(nameof(SelectedEmployee));
                 OnPropertyChanged(nameof(CanApplyEditOrRemoveButton));
+                OnPropertyChanged(nameof(ShowEditAndRemoveButtonToolTip));
             }
         }
 
@@ -37,12 +38,29 @@ namespace EmployeeManagementSystem.ViewModels
         public ICommand CloseWindowCommand { get; }
         public ICommand LoadEmployeesCommand { get; }
 
+        private string _editAndRemoveButtonToolTip;
+        public string EditAndRemoveButtonToolTip
+        {
+            get
+            {
+                return _editAndRemoveButtonToolTip;
+            }
+            set
+            {
+                _editAndRemoveButtonToolTip = value;
+                OnPropertyChanged(nameof(EditAndRemoveButtonToolTip));
+            }
+        }
+
+        public bool ShowEditAndRemoveButtonToolTip => SelectedEmployee == null;
         public bool CanApplyEditOrRemoveButton => SelectedEmployee != null;
 
         public EmployeeListingViewModel(IEmployerBriefcase employerBriefcase, INavigationStore navigationStore, Func<AddOrEditEmployeeViewModel> createAddOrEditEmployeeViewModel)
         {
             _employees = new ObservableCollection<Employee>();
             _employerBriefcase = employerBriefcase;
+
+            EditAndRemoveButtonToolTip = "Select Employee";
 
             NavigateCommand = new NavigateCommand(navigationStore, createAddOrEditEmployeeViewModel);
             AddEmployeeCommand = new RelayCommand(NavigateToAddEmployeeView);

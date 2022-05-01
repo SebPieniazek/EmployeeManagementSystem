@@ -115,11 +115,17 @@
                 <Button Content="Add" 
                         Command="{Binding AddPhoneNumberCommand}" 
                         IsEnabled="{Binding CanApplyAddPhoneNumberButton}" 
-                        Style="{DynamicResource ButtonDefaultStyle}" />
-                <Button Content="Delete" 
+                        Style="{DynamicResource ButtonDefaultStyle}" 
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTipService.IsEnabled="{Binding ShowAddPhoneNumberButtonToolTip}"
+                        ToolTip="{Binding AddPhoneNumberButtonToolTip}"/>
+                <Button Content="Remove" 
                         Command="{Binding RemovePhoneNumberCommand}" 
                         IsEnabled="{Binding CanApplyRemovePhoneNumberButton}" 
-                        Style="{DynamicResource ButtonDefaultStyle}" />
+                        Style="{DynamicResource ButtonDefaultStyle}" 
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTipService.IsEnabled="{Binding ShowRemovePhoneNumberButtonToolTip}"
+                        ToolTip="{Binding RemovePhoneNumberButtonToolTip}"/>
             </StackPanel>
         </StackPanel>
 
@@ -151,11 +157,17 @@
                 <Button Content="Add" 
                         Command="{Binding AddEmailCommand}" 
                         IsEnabled="{Binding CanApplyAddEmailButton}" 
-                        Style="{DynamicResource ButtonDefaultStyle}" />
-                <Button Content="Delete" 
+                        Style="{DynamicResource ButtonDefaultStyle}" 
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTipService.IsEnabled="{Binding ShowAddEmailButtonToolTip}"
+                        ToolTip="{Binding AddEmailButtonToolTip}" />
+                <Button Content="Remove" 
                         Command="{Binding RemoveEmailCommand}" 
                         IsEnabled="{Binding CanApplyRemoveEmailButton}" 
-                        Style="{DynamicResource ButtonDefaultStyle}" />
+                        Style="{DynamicResource ButtonDefaultStyle}" 
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTipService.IsEnabled="{Binding ShowRemoveEmailButtonToolTip}"
+                        ToolTip="{Binding RemoveEmailButtonToolTip}" />
             </StackPanel>
         </StackPanel>
 
@@ -165,7 +177,10 @@
                 IsEnabled="{Binding CanApplySaveEmployeeButton}" 
                 Width="100" Height="30" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Style="{DynamicResource ButtonDefaultStyle}" />
+                Style="{DynamicResource ButtonDefaultStyle}" 
+                ToolTipService.ShowOnDisabled="True"
+                ToolTipService.IsEnabled="{Binding ShowSaveButtonToolTip}"
+                ToolTip="{Binding SaveButtonToolTip}" />
         <Button Grid.Row="3" Grid.Column="1" 
                 Content="Cancel" 
                 Command="{Binding CancelCommand}" 

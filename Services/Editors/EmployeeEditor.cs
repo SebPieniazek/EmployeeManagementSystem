@@ -69,7 +69,27 @@ namespace EmployeeManagementSystem.Services.Editors
         {
             using (EMSContext context = _dbContextsFactory.CreateDbContext())
             {
-                EmployeeDTO employeeDTO = context.Employees.Include(n => n.Emails).Include(n => n.PhoneNumbers).FirstOrDefault(n => n.ID == employee.ID);
+                EmployeeDTO employeeDTO;
+
+                if (employee.ID == 0)
+                {
+                    employeeDTO = context.Employees
+                        .Include(n => n.Emails)
+                        .Include(n => n.PhoneNumbers)
+                        .FirstOrDefault(n => n.FirstName == employee.FirstName &&
+                                             n.LastName == employee.LastName &&
+                                             n.Position == employee.Position &&
+                                             n.City == employee.City &&
+                                             n.ZipCode == employee.ZipCode &&
+                                             n.Street == employee.Street);
+                }
+                else
+                {
+                    employeeDTO = context.Employees
+                        .Include(n => n.Emails)
+                        .Include(n => n.PhoneNumbers)
+                        .FirstOrDefault(n => n.ID == employee.ID);
+                }
 
                 context.Entry(employeeDTO).State = EntityState.Deleted;
 

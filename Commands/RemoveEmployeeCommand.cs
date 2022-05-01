@@ -1,6 +1,8 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.ViewModels;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EmployeeManagementSystem.Commands
 {
@@ -16,11 +18,19 @@ namespace EmployeeManagementSystem.Commands
         }
 
         public override async Task ExecuteAsync(object parameter)
-        {    
-            await _employerBriefcase.RemoveEmployee(_employerBriefcase.EmployeeToEdit);
-            _employeeListingViewModel.SelectedEmployee = null;
-            _employerBriefcase.EmployeeToEdit = null;
-            _employeeListingViewModel.LoadEmployeesCommand.Execute(null);
-        }
+        {
+            try
+            {
+                await _employerBriefcase.RemoveEmployee(_employeeListingViewModel.SelectedEmployee);
+                _employeeListingViewModel.SelectedEmployee = null;
+                _employerBriefcase.EmployeeToEdit = null;
+                _employeeListingViewModel.LoadEmployeesCommand.Execute(null);
+                MessageBox.Show("Successfully removed an employee", "Removed", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show($"Failed {e.Message} ! Try again later.", "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+}
     }
 }

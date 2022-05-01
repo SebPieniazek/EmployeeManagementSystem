@@ -1,6 +1,8 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.ViewModels;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EmployeeManagementSystem.Commands
 {
@@ -17,13 +19,22 @@ namespace EmployeeManagementSystem.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            if(_addOrEditEmployeeViewModel.Employee == null)
+            try
             {
-                await _employerBriefcase.AddEmployee(_addOrEditEmployeeViewModel.CreateEmployee(0));
+                if (_addOrEditEmployeeViewModel.Employee == null)
+                {
+                    await _employerBriefcase.AddEmployee(_addOrEditEmployeeViewModel.CreateEmployee(0));
+                    MessageBox.Show("Successfully added employee", "Added", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    await _employerBriefcase.EditEmployee(_addOrEditEmployeeViewModel.CreateEmployee(_addOrEditEmployeeViewModel.Employee.ID));
+                    MessageBox.Show("Successfully edited an employee", "Edited", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
-            else
+            catch(Exception e)
             {
-                await _employerBriefcase.EditEmployee(_addOrEditEmployeeViewModel.CreateEmployee(_addOrEditEmployeeViewModel.Employee.ID));
+                MessageBox.Show($"Failed {e.Message} ! Try again later.", "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
