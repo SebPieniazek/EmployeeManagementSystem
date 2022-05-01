@@ -10,7 +10,7 @@ namespace EmployeeManagementSystem.DTOs
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string Email { get; set; }
 
         [MaxLength(30)]

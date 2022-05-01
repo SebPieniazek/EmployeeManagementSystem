@@ -11,15 +11,15 @@ namespace EmployeeManagementSystem.DTOs
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(40)]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(25)]
+        [MaxLength(40)]
         public string Position { get; set; }
 
         [Required]

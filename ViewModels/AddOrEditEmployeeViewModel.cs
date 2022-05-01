@@ -96,9 +96,9 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be blank.");
                 }
-                else if(_firstName.Length > 20)
+                else if(_firstName.Length > 40)
                 {
-                    AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be longer than 20 characters.");
+                    AddError(_employeePropertyErrors, nameof(FirstName), "The First Name field can't be longer than 40 characters.");
                 }
 
                 OnPropertyChanged(nameof(FirstName));
@@ -121,9 +121,9 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be blank.");
                 }
-                else if (_lastName.Length > 30)
+                else if (_lastName.Length > 40)
                 {
-                    AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be longer than 30 characters.");
+                    AddError(_employeePropertyErrors, nameof(LastName), "The Last Name field can't be longer than 40 characters.");
                 }
 
                 OnPropertyChanged(nameof(LastName));
@@ -146,9 +146,9 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be blank.");
                 }
-                else if (_position.Length > 25)
+                else if (_position.Length > 40)
                 {
-                    AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be longer than 25 characters.");
+                    AddError(_employeePropertyErrors, nameof(Position), "The Position field can't be longer than 40 characters.");
                 }
 
                 OnPropertyChanged(nameof(Position));
@@ -247,9 +247,9 @@ namespace EmployeeManagementSystem.ViewModels
                 {
                     AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be blank.");
                 }
-                else if (_email.Length > 20)
+                else if (_email.Length > 40)
                 {
-                    AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be longer than 20 characters.");
+                    AddError(_emailPropertyErrors, nameof(Email), "The Email field can't be longer than 40 characters.");
                 }
 
                 OnPropertyChanged(nameof(Email));
