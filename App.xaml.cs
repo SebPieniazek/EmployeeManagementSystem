@@ -20,7 +20,8 @@ namespace EmployeeManagementSystem
             _navigationStore = new NavigationStore();
 
             // Enter connection string there or use mine for tests.
-            // EFC will automatically create the database tables.
+            // If you enter new connection string EFC will automatically create the database tables, 
+            // you just have to open console package manager and type "create-database".
             string connectionString = @"Host=pgsql14.server758561.nazwa.pl;Database=server758561_EmployeeManagementSystem;Username=server758561_EmployeeManagementSystem;Password=EMSGreen1!";
             _dbContextsFactory = new DbContextsFactory(connectionString);
             _employerBriefcase = new EmployerBriefcase(_dbContextsFactory);
